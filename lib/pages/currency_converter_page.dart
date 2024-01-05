@@ -17,6 +17,17 @@ class _CurrencyConveterPage extends State<CurrencyConverterPage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    textEditingController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final border = OutlineInputBorder(
         borderSide: const BorderSide(
@@ -25,25 +36,25 @@ class _CurrencyConveterPage extends State<CurrencyConverterPage> {
             color: Color.fromRGBO(23, 85, 255, 1)),
         borderRadius: BorderRadius.circular(5));
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 212, 226, 238),
       appBar: AppBar(
           title: const Text("Currency Page"),
           centerTitle: true,
           backgroundColor: const Color.fromRGBO(23, 85, 255, 1)),
-      body: Container(
-        padding: const EdgeInsets.all(0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'USD ${result.toString()}',
-              style: const TextStyle(
-                fontSize: 24,
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'USD ${result.toString()}',
+                style: const TextStyle(
+                  fontSize: 24,
+                ),
               ),
-            ),
-            Container(
-              padding: const EdgeInsets.all(8.0),
-              margin: const EdgeInsets.all(8.0),
-              child: TextField(
+              const SizedBox(height: 50),
+              TextField(
                   style: const TextStyle(color: Colors.black),
                   controller: textEditingController,
                   decoration: InputDecoration(
@@ -57,23 +68,24 @@ class _CurrencyConveterPage extends State<CurrencyConverterPage> {
                   ),
                   keyboardType:
                       const TextInputType.numberWithOptions(decimal: true)),
-            ),
-            ElevatedButton(
-              onPressed: convertCurrency,
-              style: const ButtonStyle(
-                  backgroundColor:
-                      MaterialStatePropertyAll(Color.fromRGBO(23, 85, 255, 1)),
-                  foregroundColor: MaterialStatePropertyAll(Colors.white),
-                  fixedSize: MaterialStatePropertyAll(Size(360, 60)),
-                  shape: MaterialStatePropertyAll(RoundedRectangleBorder(
-                      borderRadius:
-                          BorderRadiusDirectional.all(Radius.circular(5))))),
-              child: const Text(
-                "Submit",
-                style: TextStyle(fontSize: 16),
+              const SizedBox(height: 10),
+              ElevatedButton(
+                onPressed: convertCurrency,
+                style: const ButtonStyle(
+                    backgroundColor: MaterialStatePropertyAll(
+                        Color.fromRGBO(23, 85, 255, 1)),
+                    foregroundColor: MaterialStatePropertyAll(Colors.white),
+                    fixedSize: MaterialStatePropertyAll(Size(400, 60)),
+                    shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadiusDirectional.all(Radius.circular(5))))),
+                child: const Text(
+                  "Submit",
+                  style: TextStyle(fontSize: 16),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
