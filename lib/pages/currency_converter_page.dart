@@ -22,6 +22,17 @@ class _CurrencyConveterPage extends State<CurrencyConverterPage> {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+  }
+
+
+  @override
+  void didUpdateWidget(covariant CurrencyConverterPage oldWidget) {
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
   void dispose() {
     textEditingController.dispose();
     super.dispose();
